@@ -1,0 +1,26 @@
+import { ElementRef, DoCheck, OnChanges, OnDestroy, AfterViewInit, EventEmitter } from '@angular/core';
+export declare class MaterializeDirective implements AfterViewInit, DoCheck, OnChanges, OnDestroy {
+    private _el;
+    private _params;
+    private _functionName;
+    private previousValue;
+    private _waitFunction;
+    private changeListenerShouldBeAdded;
+    constructor(_el: ElementRef);
+    materializeParams: any;
+    materializeActions: EventEmitter<string>;
+    materialize: string;
+    materializeSelectOptions: any;
+    ngAfterViewInit(): void;
+    ngOnChanges(): void;
+    ngOnDestroy(): void;
+    ngDoCheck(): boolean;
+    private performElementRemotion();
+    private performElementUpdates();
+    private performLocalElementUpdates(functionName?);
+    private isTooltip();
+    private isSelect();
+    private isDatePicker();
+    private isAutocomplete();
+    private enableDPButtons();
+}

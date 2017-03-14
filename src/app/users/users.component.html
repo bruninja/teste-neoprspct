@@ -1,0 +1,29 @@
+<p>
+  Mostrando {{ users.length }} usuários.
+</p>
+
+<table>
+  <thead>
+  <tr>
+    <th data-field="name">#id</th>
+    <th data-field="name">Name</th>
+    <th data-field="name">Age</th>
+    <th data-field="name">City</th>
+    <th data-field="name">Delete</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.age }}</td>
+      <td>{{ user.city }}</td>
+      <td>
+        <a (click)="deleteUser(user)" href="">
+          <i id="trash" class="material-icons">delete</i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
