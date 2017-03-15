@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from './shared/users.service';
 import { User } from './shared/user';
 import { Subject } from 'rxjs/Subject';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-users',

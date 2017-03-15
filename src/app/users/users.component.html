@@ -1,7 +1,4 @@
-<p>
-  Mostrando {{ users.length }} usuários.
-</p>
-<input (keyup)="searchTerm$.next($event.target.value)" placeholder="Filtro..." id="first_name" type="text" class="validate">
+<input #searchInput (keyup)="0" placeholder="Filtro de busca..." type="text" class="validate"> <!-- [(ngModel)]="term" -->
 <table>
   <thead>
   <tr>
@@ -13,8 +10,8 @@
   </tr>
   </thead>
 
-  <tbody *ngIf="users">
-    <tr *ngFor="let user of users">
+  <tbody>
+    <tr *ngFor="let user of users | filter:searchInput.value">
       <td>{{ user.id }}</td>
       <td>{{ user.name }}</td>
       <td>{{ user.age }}</td>

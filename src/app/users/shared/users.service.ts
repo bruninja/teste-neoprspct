@@ -13,7 +13,7 @@ export class UsersService {
 
   constructor(private http: Http) { }
 
-  getUsers(){
+  getUsers() {
     return this.http.get(this.url)
       .map(res => res.json());
   }
@@ -22,7 +22,7 @@ export class UsersService {
     return this.http.get(this.getUserUrl(id))
       .map(res => res.json());
   }
-  
+
   deleteUser(id){
     return this.http.delete(this.getUserUrl(id))
       .map(res => res.json());

@@ -1,6 +1,6 @@
-body {
+.container {
     display: flex;
-    min-height: 100vh;
+    min-height: 60vh;
     flex-direction: column;
   }
 
