@@ -1,7 +1,7 @@
 <p>
   Mostrando {{ users.length }} usuários.
 </p>
-
+<input (keyup)="searchTerm$.next($event.target.value)" placeholder="Filtro..." id="first_name" type="text" class="validate">
 <table>
   <thead>
   <tr>
@@ -13,7 +13,7 @@
   </tr>
   </thead>
 
-  <tbody>
+  <tbody *ngIf="users">
     <tr *ngFor="let user of users">
       <td>{{ user.id }}</td>
       <td>{{ user.name }}</td>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from "./shared/users.service";
-import { User } from "./shared/user";
+import { UsersService } from './shared/users.service';
+import { User } from './shared/user';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-users',
