@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from './shared/users.service';
 import { User } from './shared/user';
 import { Subject } from 'rxjs/Subject';
 import { FormsModule } from '@angular/forms';
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'app-users',
@@ -12,12 +12,29 @@ import { FormsModule } from '@angular/forms';
 export class UsersComponent implements OnInit {
 
   private users: User[] = [];
+  public data;
+  public filterQuery = "";
+  public rowsOnPage = 10;
+  public sortBy = "email";
+  public sortOrder = "asc";
 
-  constructor(private usersService: UsersService) { }
+  constructor(private http: Http) { }
 
-  ngOnInit() {
-    this.usersService.getUsers()
-      .subscribe(data => this.users = data);
+  ngOnInit(): void {
+    this.http.get("http://demo5698684.mockable.io/users")
+        .subscribe((data)=> {
+            setTimeout(()=> {
+                this.data = data.json();
+            }, 1000);
+        });
+  }
+
+  public toInt(num: string) {
+      return +num;
+  }
+
+  public sortByWordLength = (a: any) => {
+      return a.city.length;
   }
 
   deleteUser(user){
@@ -25,13 +42,13 @@ export class UsersComponent implements OnInit {
       var index = this.users.indexOf(user);
       this.users.splice(index, 1);
 
-      this.usersService.deleteUser(user.id)
-        .subscribe(null,
-          err => {
-            alert("Não foi possivel apagar.");
-            // Revert the view back to its original state
-            this.users.splice(index, 0, user);
-          });
+      // this.user.deleteUser(user.id)
+      //   .subscribe(null,
+      //     err => {
+      //       alert("Não foi possivel apagar.");
+      //       // Revert the view back to its original state
+      //       this.users.splice(index, 0, user);
+      //     });
     }
   }
 

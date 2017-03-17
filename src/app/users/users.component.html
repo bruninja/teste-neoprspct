@@ -1,21 +1,31 @@
-<input #searchInput (keyup)="0" placeholder="Filtro de busca..." type="text" class="validate"> <!-- [(ngModel)]="term" -->
-<table>
+<input [(ngModel)]="filterQuery" placeholder="Filtro de busca..." type="text" class="validate"> <!-- [(ngModel)]="term" -->
+
+<table  [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+        [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
   <thead>
   <tr>
-    <th data-field="name">#id</th>
-    <th data-field="name">Name</th>
-    <th data-field="name">Age</th>
-    <th data-field="name">City</th>
+    <th data-field="name">
+      <mfDefaultSorter>#id</mfDefaultSorter>
+    </th>
+    <th data-field="name">
+      <mfDefaultSorter by="name">Name</mfDefaultSorter>
+    </th>
+    <th data-field="name">
+      <mfDefaultSorter by="age">Age</mfDefaultSorter>
+    </th>
+    <th data-field="name">
+      <mfDefaultSorter by="city">City</mfDefaultSorter>
+    </th>
     <th data-field="name">Delete</th>
   </tr>
   </thead>
 
   <tbody>
-    <tr *ngFor="let user of users | filter:searchInput.value">
-      <td>{{ user.id }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.age }}</td>
-      <td>{{ user.city }}</td>
+    <tr *ngFor="let item of mf.data">
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.age }}</td>
+      <td>{{ item.city }}</td>
       <td>
         <a (click)="deleteUser(user)" href="">
           <i id="trash" class="material-icons">delete</i>
