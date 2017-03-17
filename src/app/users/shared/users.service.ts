@@ -11,6 +11,18 @@ export class UsersService {
 
   private url: string = "http://demo5698684.mockable.io/users";
 
+  ngOnInit(){
+  	this.url.sort( function(name1, name2) {
+  	    if ( name1.first_name < name2.first_name ){
+  	    	return -1;
+  	    }else if( name1.first_name > name2.first_name ){
+  	        return 1;
+  	    }else{
+  	    	return 0;
+  	    }
+  	});
+  }
+
   constructor(private http: Http) { }
 
   getUsers() {
